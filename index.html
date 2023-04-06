@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ROCK PAPER SCISSOR</title>
-        <meta charset="UTF-8">
 
-    </head>
-    <body>
-        <script>
-            console.log("hello world!");
-        </script>
-    </body>
+<head>
+    <title>ROCK PAPER SCISSOR</title>
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <script>
+
+        console.log("hello world!");
+        function getComputerChoice() {
+            return Math.floor((Math.random() * 3) + 1);
+        }
+        
+
+        function playerSelection() {
+            return parseInt(prompt("enter your choice as number \n Rock(1)\n Paper(2)\n Scissor(3)"));
+        }
+
+        let comp = getComputerChoice();
+        let player = playerSelection();
+        console.log(comp);
+        console.log(whoWon(player, comp));
+
+        function whoWon(player, comp) {
+            if (player === comp) {
+                return "tie!";
+            }
+            else if (player === 1 && comp === 3) {
+                return "You Win! Rock beats Scissor";
+            }
+            else if (player === 1 && comp === 2) {
+                return "You lose! Paper beats Rock";
+            }
+            else if (player === 2 && comp === 3) {
+                return "You lose! Scissor beats Paper";
+            }
+            else if (player === 2 && comp === 1) {
+                return "You Win! Paper beats Rock";
+            }
+            else if (player === 3 && comp === 1) {
+                return "You lose! Rock beats Scissor";
+            }
+            else if (player === 3 && comp === 2) {
+                return "You Win! Scissor beats Paper";
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
 </html>
