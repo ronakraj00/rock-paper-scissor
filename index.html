@@ -4,102 +4,15 @@
 <head>
     <title>ROCK PAPER SCISSOR</title>
     <meta charset="UTF-8">
-
+    <script src="jscript.js" defer></script>
 </head>
 
 <body>
-    <script>
-
-        // variables for counting
-        let countP=0;
-        let countC=0;
-
-
-        console.log("Game Start");
-
-        //gets the choice from computer
-        function getComputerChoice() {
-            return Math.floor((Math.random() * 3) + 1);
-        }
-
-        //ask user for number of rounds
-        let n=parseInt(prompt("how many rounds",5));
-
-        //calls the function "Game" and prints its result
-        if (n===0){
-            console.log("game over");
-        }
-        else{
-            console.log(game(n));
-        }
-        
-
-        //asks user's choice
-        function getPlayerChoice() {
-            return parseInt(prompt("enter your choice as number \n Rock(1)\n Paper(2)\n Scissor(3)"));
-        }
-
-        // let comp = getComputerChoice();
-        // let player = getPlayerChoice();
-        
-        //console.log(playRound(player, comp));
-
-        //function for each round
-        function playRound(player, comp) {
-            console.log(`${player}:${comp}`)
-            if (player === comp) {
-                return;
-            }
-            else if (player === 1 && comp === 3) {
-                
-                return countP+=1;
-            }
-            else if (player === 1 && comp === 2) {
-                return countC+=1;
-            }
-            else if (player === 2 && comp === 3) {
-                return countC+=1;
-            }
-            else if (player === 2 && comp === 1) {
-                return countP+=1;
-            }
-            else if (player === 3 && comp === 1) {
-                return countC+=1;
-            }
-            else if (player === 3 && comp === 2) {
-                return countP+=1;
-            }
-        }
-
-        //game function
-        function game(n){
-            if (n===0){
-                console.log(whoWon(countC,countP));
-                return;
-            }
-            else{
-                playRound(getPlayerChoice(),getComputerChoice());
-                game(n-1);
-            }
-            
-        }
-
-        //function to decide who won after all rounds
-        function whoWon(countC,countP){
-            if(countC===countP){
-                return "tie";
-            }
-            else if( countC>countP){
-                return "computer won by point --> "+countC;
-            }
-            else if(countP>countC){
-                return "You have won!! by points --> "+countP;
-            }
-        }
-
-
-
-    </script>
+    <div class="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissor">Scissor</button>
+    </div>
 </body>
 
 </html>
