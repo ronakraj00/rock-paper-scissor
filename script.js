@@ -38,29 +38,29 @@ function playRound(player, comp) {
         return;
     }
     else if (player === 1 && comp === 3) {
-        statPara.textContent="player has won this round";
+        statPara.textContent="Player has won this round";
 
         return countP+=1;
     }
     else if (player === 1 && comp === 2) {
-        statPara.textContent="computer has won this round";
+        statPara.textContent="Computer has won this round";
 
         return countC+=1;
     }
     else if (player === 2 && comp === 3) {
-        statPara.textContent="computer has won this round";
+        statPara.textContent="Computer has won this round";
         return countC+=1;
     }
     else if (player === 2 && comp === 1) {
-        statPara.textContent="player has won this round";
+        statPara.textContent="Player has won this round";
         return countP+=1;
     }
     else if (player === 3 && comp === 1) {
-        statPara.textContent="computer has won this round";
+        statPara.textContent="Computer has won this round";
         return countC+=1;
     }
     else if (player === 3 && comp === 2) {
-        statPara.textContent="player has won this round";
+        statPara.textContent="Player has won this round";
         return countP+=1;
     }
 }
@@ -70,7 +70,7 @@ function game(playerChoice){
     playRound(playerChoice,getComputerChoice());
     round+=1;
     if(round==5){
-        statPara.innerHTML=`all 5 rounds completed <br> and ${whoWon(countC,countP)}`
+        statPara.innerHTML=`All 5 rounds completed <br> ${whoWon(countC,countP)}`
         reset();
     }
     
@@ -99,7 +99,7 @@ function whoWon(countC,countP){
         return "tie";
     }
     else if( countC>countP){
-        return "computer won by point --> "+countC;
+        return "Computer won by point --> "+countC;
     }
     else if(countP>countC){
         return "You have won!! by points --> "+countP;
