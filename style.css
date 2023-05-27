@@ -5,6 +5,8 @@
 body{
     background-color: aliceblue;
     height: 100vh;
+    border: 2px solid rgba(255, 68, 0, 0.298);
+    box-shadow: 0.06em 0.06em 3px blue;
 }
 .container{
     display: flex;
@@ -53,6 +55,16 @@ header{
 }
 header:hover{
     transform: scale(1.1);
+}
+
+button:active{
+    transform: scale(1.1)
+
+}
+
+body:active{
+    border: 2px solid blue;
+    box-shadow: -0.06em -0.06em 3px orangered;
 }
 
 
