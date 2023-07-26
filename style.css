@@ -1,84 +1,91 @@
-/* *{
-    border: 1px solid blue;
-} */
 
 body{
-    background-color: aliceblue;
-    height: 100vh;
-    border: 2px solid rgba(255, 68, 0, 0.298);
-    box-shadow: 0.06em 0.06em 3px blue;
+    height: 100dvh;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(10deg,rgba(135, 207, 235, 0.377),white);
 }
 .container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    
 }
 
-button{
-    width: 70px;
-    height: 40px;
-    border: 3px solid rgba(84, 84, 226, 0.487);
-    margin: 5px;
-    border-radius: 12px;
-    box-shadow: 3px 4px orangered;
-    color:rgb(0, 0, 255);
-    text-shadow:0.06em 0.06em 3px;
+#status{
+    font-size: large;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-areas:
+    "round round";
+    gap: 10px;
 }
 
-button:hover{
-    box-shadow: -3px -4px blue;
-    color: orangered;
-    text-shadow:0.06em 0.06em 3px orangered;
+#status span{
+    color: red;
+    font-size: xx-large;
+    font-family: 'Times New Roman', Times, serif;
 }
-
-p{
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.2em;
-    text-shadow: 0.06em 0.06em 2px blue;
-}
-
-p:hover{
-    text-shadow: 0.06em 0.06em 2px orangered;
-}
-
-header{
+#round-no{
+    grid-area: round;
     text-align: center;
-    background-color: rgba(219, 237, 252, 0.898);
-    height: 40px;
-    line-height: 40px;
-    color:orangered;
-    text-shadow: 0.06em 0.06em 7px red;
-
-}
-header:hover{
-    transform: scale(1.1);
 }
 
-button:active{
-    transform: scale(1.1)
-
+#round-no span{
+    color:green;
 }
 
-body:active{
-    border: 2px solid blue;
-    box-shadow: -0.06em -0.06em 3px orangered;
+.winning{
+    color: green !important;
 }
 
-
-body{
-    display: flex;
-    justify-content: center;
-    width: 50vw;
-    position: relative;
-    left: calc(25vw);
-    height: 50vh;
-    z-index: -1;
-    background:linear-gradient(90deg,rgba(255, 0, 0, 0.303),rgba(0, 0, 255, 0.321));
+#status div{
+    padding: 10px;
+    backdrop-filter: blur(20px);
+    /* background-color: rgba(166, 0, 255, 0.292); */
+    box-shadow: 0px 10px 80px rgba(41, 41, 41, 0.119);
+    border-radius: 12px;
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: larger;
 }
 
 .cont{
-    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80dvh;
+}
+
+button{
+    width: 140px;
+    height: 60px;
+    /* border: 3px solid rgba(84, 84, 226, 0.487); */
+    border: none;
+    background-color:rgba(255, 255, 255, 0);
+    box-shadow:0px 2px 40px rgba(132, 131, 131, 0.247) ;
+    margin: 5px;
+    border-radius: 12px;
+    font-size: large;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+
+button img{
+    width: 30px;
+    filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.244));
+}
+
+button:active img{
+    transform: scale(1.2);
+}
+
+
+footer{
+    margin-bottom: 20px;
+    margin-top: auto;
+    text-align: center;
 }
