@@ -6,10 +6,17 @@ let round = 0;
 // DOM manipulation
 const container = document.querySelector(".container");
 const statDiv = document.createElement("div");
+statDiv.setAttribute("id","round-status");
 const statPara = document.createElement("p");
+statDiv.append(statPara);
 const playerPoints = document.querySelector("#player-points span");
 const computerPoints = document.querySelector("#computer-points span");
 const roundNo = document.querySelector("#round-no span");
+
+const choicePlayer=document.querySelector("#player-choice img");
+const choiceComputer=document.querySelector("#computer-choice img");
+
+const congratulation=document.querySelector("#congratulation")
 
 //function make status all zero
 function everyZero() {
@@ -20,11 +27,24 @@ function everyZero() {
   playerPoints.textContent = "0";
   computerPoints.textContent = "0";
   roundNo.textContent = "0";
+  choiceComputer.src=""
+  choicePlayer.src=""
 }
 
 //gets the choice from computer
 function getComputerChoice() {
-  return Math.floor(Math.random() * 3 + 1);
+    compChoice=Math.floor(Math.random() * 3 + 1);
+
+    if(compChoice==1){
+        choiceComputer.src="assets/rock.png";
+    }
+    if(compChoice==2){
+        choiceComputer.src="assets/paper.png";
+    }
+    if(compChoice==3){
+        choiceComputer.src="assets/scissor.png";
+    }
+  return compChoice;
 }
 
 //function for each round
@@ -75,7 +95,7 @@ function game(playerChoice) {
     }
   }
   if (round == 5) {
-    statPara.innerHTML = `All 5 rounds completed <br> ${whoWon(
+    congratulation.innerHTML = `All 5 rounds completed <br> ${whoWon(
       countC,
       countP
     )}`;
@@ -84,17 +104,22 @@ function game(playerChoice) {
   }
 }
 
+const InsideEndScreen=document.querySelector("#inside-end-screen");
+const endScreen=document.querySelector("#end-screen");
+
 //reset function
 function reset() {
+    endScreen.classList.remove("invisible");
   const resetB = document.createElement("button");
   resetB.textContent = "Reset";
-  container.appendChild(resetB);
+  InsideEndScreen.appendChild(resetB);
   resetB.addEventListener(
     "click",
     (e) => {
       e.stopPropagation();
       everyZero();
-      container.removeChild(resetB);
+      InsideEndScreen.removeChild(resetB);
+      endScreen.classList.add("invisible");
     },
     { once: true }
   );
@@ -103,7 +128,7 @@ function reset() {
 //function to decide who won after all rounds
 function whoWon(countC, countP) {
   if (countC === countP) {
-    return "tie";
+    return "It's A DRAW!";
   } else if (countC > countP) {
     return "Computer won by point --> " + countC;
   } else if (countP > countC) {
@@ -113,7 +138,6 @@ function whoWon(countC, countP) {
 
 //DOM manipulation
 container.appendChild(statDiv);
-container.appendChild(statPara);
 
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
@@ -121,12 +145,21 @@ const scissor = document.querySelector("#scissor");
 
 //button click event
 rock.addEventListener("click",()=>{
+    if(round<5){
+        choicePlayer.src="assets/rock.png"
+    }
     game(1);
 });
 paper.addEventListener("click",()=>{
+    if(round<5){
+        choicePlayer.src="assets/paper.png"
+    }
     game(2);
 });
 scissor.addEventListener("click",()=>{
+    if(round<5){
+        choicePlayer.src="assets/scissor.png";
+    }
     game(3);
 });
 

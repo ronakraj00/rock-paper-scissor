@@ -12,8 +12,15 @@ body{
     align-items: center;
 }
 
+#round-status{
+    margin-top: 30px;
+    text-align: center;
+    box-shadow:0px 2px 40px rgba(132, 131, 131, 0.247);
+    padding: 4px 10px;
+}
+
 #status{
-    font-size: large;
+    font-size: small;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-template-areas:
@@ -43,14 +50,19 @@ body{
     padding: 10px;
     backdrop-filter: blur(20px);
     /* background-color: rgba(166, 0, 255, 0.292); */
-    box-shadow: 0px 10px 80px rgba(41, 41, 41, 0.119);
+    box-shadow:0px 2px 40px rgba(132, 131, 131, 0.247) ;
     border-radius: 12px;
     text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: larger;
 }
 
+#player-message{
+    margin-top: 30px;
+}
+
 .cont{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -59,6 +71,7 @@ body{
 }
 
 button{
+    margin-top: 20px;
     width: 140px;
     height: 60px;
     /* border: 3px solid rgba(84, 84, 226, 0.487); */
@@ -82,9 +95,61 @@ button:active img{
     transform: scale(1.2);
 }
 
+#choice{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#choice div{
+    margin-left: 10px;
+    height:100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow:0px 2px 40px rgba(132, 131, 131, 0.247) ;
+    padding: 15px;
+    border-radius: 14px;
+    font-size: large;
+    margin-top: 20px;
+}
+
+#choice img{
+    width: 50px;
+}
 
 footer{
     margin-bottom: 20px;
     margin-top: auto;
     text-align: center;
+}
+
+#end-screen{
+    position:fixed;
+    top: 0;
+    height: 100dvh;
+    width:100%;
+    left: 0;
+}
+
+#end-screen button{
+    margin-top: 60px;
+    background-color: white;
+}
+
+.invisible{
+    text-align: center;
+    
+    display: none;
+}
+#inside-end-screen{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    backdrop-filter: blur(10px);
+    height: 100dvh;
+    width:100%;
 }
