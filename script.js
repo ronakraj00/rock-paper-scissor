@@ -3,6 +3,9 @@ let countP = 0;
 let countC = 0;
 let round = 0;
 
+const computerAudio=new Audio("assets/computer-choice-sound.wav")
+const buttonClickAudio=new Audio("assets/rps-button-click.wav")
+const winSound=new Audio("assets/Win.mp3");
 // DOM manipulation
 const container = document.querySelector(".container");
 const statDiv = document.createElement("div");
@@ -143,8 +146,10 @@ const endScreen = document.querySelector("#end-screen");
 function reset() {
   setTimeout(() => {
     endScreen.classList.remove("invisible");
+    if(countP>countC){
+      winSound.play();
+    }
   }, 5000);
-
   const resetB = document.createElement("button");
   resetB.textContent = "Reset";
   InsideEndScreen.appendChild(resetB);
@@ -181,18 +186,21 @@ const scissor = document.querySelector("#scissor");
 //button click event
 rock.addEventListener("click", () => {
   if (round < 5) {
+    buttonClickAudio.play()
     choicePlayer.src = "assets/rock.png";
   }
   game(1);
 });
 paper.addEventListener("click", () => {
   if (round < 5) {
+    buttonClickAudio.play()
     choicePlayer.src = "assets/paper.png";
   }
   game(2);
 });
 scissor.addEventListener("click", () => {
   if (round < 5) {
+    buttonClickAudio.play()
     choicePlayer.src = "assets/scissor.png";
   }
   game(3);
@@ -214,11 +222,18 @@ const choiceImage = [
   "assets/scissor.png",
 ];
 function animateComputer(compChoice) {
+  computerAudio.loop=true;
+  computerAudio.volume=0.1
+  setTimeout(()=>{
+    computerAudio.play();
+  },300)
   let i = 0;
+  i=0;
   const intervalId = setInterval(() => {
     choiceComputer.src = choiceImage[i];
     if (i > 11) {
       choiceComputer.src = choiceImage[compChoice - 1];
+      computerAudio.pause();
       clearInterval(intervalId);
     } else {
       i++;
