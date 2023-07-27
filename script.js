@@ -130,9 +130,9 @@ function whoWon(countC, countP) {
   if (countC === countP) {
     return "It's A DRAW!";
   } else if (countC > countP) {
-    return "Computer won by point --> " + countC;
+    return `<span class="computer-won">Computer won by <h3 class="point-computer">${countC}</h3> points.</span>`;
   } else if (countP > countC) {
-    return "You have won!! by points --> " + countP;
+    return `<span class="player-won">You have won!! by <h3 class="point-player">${countP}</h3> points.</span>`;
   }
 }
 

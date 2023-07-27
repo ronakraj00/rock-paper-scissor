@@ -134,8 +134,9 @@ footer{
 }
 
 #end-screen button{
-    margin-top: 60px;
+    margin-top: 30px;
     background-color: white;
+    box-shadow:0px 2px 40px rgba(132, 131, 131, 0.247);
 }
 
 .invisible{
@@ -152,4 +153,48 @@ footer{
     backdrop-filter: blur(10px);
     height: 100dvh;
     width:100%;
+}
+
+#congratulation h3{
+    margin: 4px;
+    font-size: xx-large;
+}
+
+.point-player{
+    color:green;
+    animation: player-won 1s ease-in-out alternate infinite;
+}
+
+.point-computer{
+    color: red;
+    animation: computer-won 800ms ease-in-out alternate infinite;
+}
+
+@keyframes computer-won {
+    50%{
+        transform: translateX(10px);
+    }
+    100%{
+        transform: translateX(-10px);
+    }
+}
+@keyframes player-won {
+    50%{
+        transform: scale(2);
+    }
+    100%{
+        transform: scale(0.5)
+    }
+}
+
+.computer-won{
+    
+    color: red;
+    
+}
+
+.player-won{
+    transform: scale(2);
+    color: green;
+    transition: transform 200ms ease-in-out;
 }
