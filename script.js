@@ -215,7 +215,6 @@ const choiceImage = [
 ];
 function animateComputer(compChoice) {
   let i = 0;
-  console.log(compChoice);
   const intervalId = setInterval(() => {
     choiceComputer.src = choiceImage[i];
     if (i > 11) {
