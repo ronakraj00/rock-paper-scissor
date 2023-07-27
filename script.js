@@ -6,17 +6,19 @@ let round = 0;
 // DOM manipulation
 const container = document.querySelector(".container");
 const statDiv = document.createElement("div");
-statDiv.setAttribute("id","round-status");
+statDiv.setAttribute("id", "round-status");
 const statPara = document.createElement("p");
 statDiv.append(statPara);
 const playerPoints = document.querySelector("#player-points span");
 const computerPoints = document.querySelector("#computer-points span");
 const roundNo = document.querySelector("#round-no span");
 
-const choicePlayer=document.querySelector("#player-choice img");
-const choiceComputer=document.querySelector("#computer-choice img");
+const choicePlayerDiv = document.querySelector("#player-choice");
+const choiceComputerDiv = document.querySelector("#computer-choice");
+const choicePlayer = document.querySelector("#player-choice img");
+const choiceComputer = document.querySelector("#computer-choice img");
 
-const congratulation=document.querySelector("#congratulation")
+const congratulation = document.querySelector("#congratulation");
 
 //function make status all zero
 function everyZero() {
@@ -27,50 +29,78 @@ function everyZero() {
   playerPoints.textContent = "0";
   computerPoints.textContent = "0";
   roundNo.textContent = "0";
-  choiceComputer.src=""
-  choicePlayer.src=""
+  choiceComputer.src = "";
+  choicePlayer.src = "";
 }
 
 //gets the choice from computer
 function getComputerChoice() {
-    compChoice=Math.floor(Math.random() * 3 + 1);
-
-    if(compChoice==1){
-        choiceComputer.src="assets/rock.png";
+  compChoice = Math.floor(Math.random() * 3 + 1);
+  animateComputer(compChoice);
+  setTimeout(() => {
+    if (compChoice == 1) {
+      choiceComputer.src = "assets/rock.png";
     }
-    if(compChoice==2){
-        choiceComputer.src="assets/paper.png";
+    if (compChoice == 2) {
+      choiceComputer.src = "assets/paper.png";
     }
-    if(compChoice==3){
-        choiceComputer.src="assets/scissor.png";
+    if (compChoice == 3) {
+      choiceComputer.src = "assets/scissor.png";
     }
+  }, 1000);
   return compChoice;
 }
 
 //function for each round
 function playRound(player, comp) {
   if (player === comp) {
-    statPara.textContent = "TIE";
+    setTimeout(() => {
+      statPara.textContent = "TIE";
+    },4000);
+    choicePlayerDiv.classList.remove("won-round");
+    choiceComputerDiv.classList.remove("won-round");
     return;
   } else if (player === 1 && comp === 3) {
-    statPara.textContent = "Player has won this round";
-
+    setTimeout(() => {
+      statPara.textContent = "Player has won this round";
+    },4000);
+    choicePlayerDiv.classList.add("won-round");
+    choiceComputerDiv.classList.remove("won-round");
     return (countP += 1);
   } else if (player === 1 && comp === 2) {
-    statPara.textContent = "Computer has won this round";
-
+    setTimeout(() => {
+      statPara.textContent = "Computer has won this round";
+    },4000);
+    choicePlayerDiv.classList.remove("won-round");
+    choiceComputerDiv.classList.add("won-round");
     return (countC += 1);
   } else if (player === 2 && comp === 3) {
-    statPara.textContent = "Computer has won this round";
+    setTimeout(() => {
+      statPara.textContent = "Computer has won this round";
+    },4000);
+    choicePlayerDiv.classList.remove("won-round");
+    choiceComputerDiv.classList.add("won-round");
     return (countC += 1);
   } else if (player === 2 && comp === 1) {
-    statPara.textContent = "Player has won this round";
+    setTimeout(() => {
+      statPara.textContent = "Player has won this round";
+    },4000);
+    choicePlayerDiv.classList.add("won-round");
+    choiceComputerDiv.classList.remove("won-round");
     return (countP += 1);
   } else if (player === 3 && comp === 1) {
-    statPara.textContent = "Computer has won this round";
+    setTimeout(() => {
+      statPara.textContent = "Computer has won this round";
+    },4000);
+    choicePlayerDiv.classList.remove("won-round");
+    choiceComputerDiv.classList.add("won-round");
     return (countC += 1);
   } else if (player === 3 && comp === 2) {
-    statPara.textContent = "Player has won this round";
+    setTimeout(() => {
+      statPara.textContent = "Player has won this round";
+    },4000);
+    choicePlayerDiv.classList.add("won-round");
+    choiceComputerDiv.classList.remove("won-round");
     return (countP += 1);
   }
 }
@@ -79,8 +109,10 @@ function playRound(player, comp) {
 function game(playerChoice) {
   if (round < 5) {
     playRound(playerChoice, getComputerChoice());
-    playerPoints.textContent = countP;
-    computerPoints.textContent = countC;
+    setTimeout(() => {
+      playerPoints.textContent = countP;
+      computerPoints.textContent = countC;
+    }, 4000);
     roundNo.textContent = round + 1;
     round += 1;
 
@@ -104,12 +136,15 @@ function game(playerChoice) {
   }
 }
 
-const InsideEndScreen=document.querySelector("#inside-end-screen");
-const endScreen=document.querySelector("#end-screen");
+const InsideEndScreen = document.querySelector("#inside-end-screen");
+const endScreen = document.querySelector("#end-screen");
 
 //reset function
 function reset() {
+  setTimeout(() => {
     endScreen.classList.remove("invisible");
+  }, 5000);
+
   const resetB = document.createElement("button");
   resetB.textContent = "Reset";
   InsideEndScreen.appendChild(resetB);
@@ -144,22 +179,50 @@ const paper = document.querySelector("#paper");
 const scissor = document.querySelector("#scissor");
 
 //button click event
-rock.addEventListener("click",()=>{
-    if(round<5){
-        choicePlayer.src="assets/rock.png"
-    }
-    game(1);
+rock.addEventListener("click", () => {
+  if (round < 5) {
+    choicePlayer.src = "assets/rock.png";
+  }
+  game(1);
 });
-paper.addEventListener("click",()=>{
-    if(round<5){
-        choicePlayer.src="assets/paper.png"
-    }
-    game(2);
+paper.addEventListener("click", () => {
+  if (round < 5) {
+    choicePlayer.src = "assets/paper.png";
+  }
+  game(2);
 });
-scissor.addEventListener("click",()=>{
-    if(round<5){
-        choicePlayer.src="assets/scissor.png";
-    }
-    game(3);
+scissor.addEventListener("click", () => {
+  if (round < 5) {
+    choicePlayer.src = "assets/scissor.png";
+  }
+  game(3);
 });
 
+//animating computer choice
+const choiceImage = [
+  "assets/rock.png",
+  "assets/paper.png",
+  "assets/scissor.png",
+  "assets/rock.png",
+  "assets/paper.png",
+  "assets/scissor.png",
+  "assets/rock.png",
+  "assets/paper.png",
+  "assets/scissor.png",
+  "assets/rock.png",
+  "assets/paper.png",
+  "assets/scissor.png",
+];
+function animateComputer(compChoice) {
+  let i = 0;
+  console.log(compChoice);
+  const intervalId = setInterval(() => {
+    choiceComputer.src = choiceImage[i];
+    if (i > 11) {
+      choiceComputer.src = choiceImage[compChoice - 1];
+      clearInterval(intervalId);
+    } else {
+      i++;
+    }
+  }, 300);
+}

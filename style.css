@@ -5,6 +5,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 .container{
     display: flex;
     flex-direction: column;
@@ -17,6 +18,7 @@ body{
     text-align: center;
     box-shadow:0px 2px 40px rgba(132, 131, 131, 0.247);
     padding: 4px 10px;
+    border-radius: 14px;
 }
 
 #status{
@@ -197,4 +199,14 @@ footer{
     transform: scale(2);
     color: green;
     transition: transform 200ms ease-in-out;
+}
+
+.won-round{
+    background-color: rgba(8, 224, 8, 0.16);
+    transition: background-color 200ms ease-in-out 4000ms;
+}
+
+#choice :not(.won-round,img){
+    background-color: rgba(255, 0, 0, 0.167);
+    transition: background-color 200ms ease-in-out 4000ms;
 }
