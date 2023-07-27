@@ -189,10 +189,11 @@ footer{
     }
 }
 
+
+
 .computer-won{
-    
     color: red;
-    
+    margin-top: 20px;
 }
 
 .player-won{
@@ -206,7 +207,19 @@ footer{
     transition: background-color 200ms ease-in-out 4000ms;
 }
 
-#choice :not(.won-round,img){
+/* #choice :not(.won-round,img){
     background-color: rgba(255, 0, 0, 0.167);
     transition: background-color 200ms ease-in-out 4000ms;
+} */
+
+.install-button{
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(62, 174, 239, 0.479);
+    font-size:large;
+    padding: 4px;
+    color: white;
+    opacity: 1;
 }

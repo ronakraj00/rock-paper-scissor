@@ -3,9 +3,12 @@ let countP = 0;
 let countC = 0;
 let round = 0;
 
-const computerAudio=new Audio("assets/computer-choice-sound.wav")
-const buttonClickAudio=new Audio("assets/rps-button-click.wav")
-const winSound=new Audio("assets/Win.mp3");
+const computerColor = "rgba(255, 0, 0, 0.342)";
+const playerColor = "rgba(0, 128, 0, 0.333)";
+
+const computerAudio = new Audio("assets/computer-choice-sound.wav");
+const buttonClickAudio = new Audio("assets/rps-button-click.wav");
+const winSound = new Audio("assets/Win.mp3");
 // DOM manipulation
 const container = document.querySelector(".container");
 const statDiv = document.createElement("div");
@@ -22,6 +25,8 @@ const choicePlayer = document.querySelector("#player-choice img");
 const choiceComputer = document.querySelector("#computer-choice img");
 
 const congratulation = document.querySelector("#congratulation");
+
+const themeColor = document.querySelector('meta[name="theme-color"]');
 
 //function make status all zero
 function everyZero() {
@@ -59,49 +64,55 @@ function playRound(player, comp) {
   if (player === comp) {
     setTimeout(() => {
       statPara.textContent = "TIE";
-    },4000);
+    }, 4000);
     choicePlayerDiv.classList.remove("won-round");
     choiceComputerDiv.classList.remove("won-round");
     return;
   } else if (player === 1 && comp === 3) {
     setTimeout(() => {
       statPara.textContent = "Player has won this round";
-    },4000);
+      themeColor.content = playerColor;
+    }, 4000);
     choicePlayerDiv.classList.add("won-round");
     choiceComputerDiv.classList.remove("won-round");
     return (countP += 1);
   } else if (player === 1 && comp === 2) {
     setTimeout(() => {
       statPara.textContent = "Computer has won this round";
-    },4000);
+      themeColor.content = computerColor;
+    }, 4000);
     choicePlayerDiv.classList.remove("won-round");
     choiceComputerDiv.classList.add("won-round");
     return (countC += 1);
   } else if (player === 2 && comp === 3) {
     setTimeout(() => {
       statPara.textContent = "Computer has won this round";
-    },4000);
+      themeColor.content = computerColor;
+    }, 4000);
     choicePlayerDiv.classList.remove("won-round");
     choiceComputerDiv.classList.add("won-round");
     return (countC += 1);
   } else if (player === 2 && comp === 1) {
     setTimeout(() => {
       statPara.textContent = "Player has won this round";
-    },4000);
+      themeColor.content = playerColor;
+    }, 4000);
     choicePlayerDiv.classList.add("won-round");
     choiceComputerDiv.classList.remove("won-round");
     return (countP += 1);
   } else if (player === 3 && comp === 1) {
     setTimeout(() => {
       statPara.textContent = "Computer has won this round";
-    },4000);
+      themeColor.content = computerColor;
+    }, 4000);
     choicePlayerDiv.classList.remove("won-round");
     choiceComputerDiv.classList.add("won-round");
     return (countC += 1);
   } else if (player === 3 && comp === 2) {
     setTimeout(() => {
       statPara.textContent = "Player has won this round";
-    },4000);
+      themeColor.content = playerColor;
+    }, 4000);
     choicePlayerDiv.classList.add("won-round");
     choiceComputerDiv.classList.remove("won-round");
     return (countP += 1);
@@ -130,7 +141,8 @@ function game(playerChoice) {
     }
   }
   if (round == 5) {
-    congratulation.innerHTML = `All 5 rounds completed <br> ${whoWon(
+    themeColor.content = "white";
+    congratulation.innerHTML = `All 5 rounds completed <br><br> ${whoWon(
       countC,
       countP
     )}`;
@@ -146,7 +158,7 @@ const endScreen = document.querySelector("#end-screen");
 function reset() {
   setTimeout(() => {
     endScreen.classList.remove("invisible");
-    if(countP>countC){
+    if (countP > countC) {
       winSound.play();
     }
   }, 5000);
@@ -183,27 +195,36 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissor = document.querySelector("#scissor");
 
+//time
+let clickTime = 0;
+let lastClickTime = 0;
 //button click event
 rock.addEventListener("click", () => {
-  if (round < 5) {
-    buttonClickAudio.play()
+  clickTime = new Date();
+  if (round < 5 && clickTime - lastClickTime > 4000) {
+    buttonClickAudio.play();
     choicePlayer.src = "assets/rock.png";
+    lastClickTime = new Date();
+    game(1);
   }
-  game(1);
 });
 paper.addEventListener("click", () => {
-  if (round < 5) {
-    buttonClickAudio.play()
+  clickTime = new Date();
+  if (round < 5 && clickTime - lastClickTime > 4000) {
+    buttonClickAudio.play();
     choicePlayer.src = "assets/paper.png";
+    lastClickTime = new Date();
+    game(2);
   }
-  game(2);
 });
 scissor.addEventListener("click", () => {
-  if (round < 5) {
-    buttonClickAudio.play()
+  clickTime = new Date();
+  if (round < 5 && clickTime - lastClickTime > 4000) {
+    buttonClickAudio.play();
     choicePlayer.src = "assets/scissor.png";
+    lastClickTime = new Date();
+    game(3);
   }
-  game(3);
 });
 
 //animating computer choice
@@ -221,14 +242,19 @@ const choiceImage = [
   "assets/paper.png",
   "assets/scissor.png",
 ];
+
+//this animate computer choice
 function animateComputer(compChoice) {
-  computerAudio.loop=true;
-  computerAudio.volume=0.1
-  setTimeout(()=>{
+  computerAudio.loop = true;
+  computerAudio.volume = 0.1;
+
+  setTimeout(() => {
     computerAudio.play();
-  },300)
+  }, 300);
+
   let i = 0;
-  i=0;
+  i = 0;
+
   const intervalId = setInterval(() => {
     choiceComputer.src = choiceImage[i];
     if (i > 11) {
@@ -239,4 +265,45 @@ function animateComputer(compChoice) {
       i++;
     }
   }, 300);
+}
+
+
+
+//for install App
+
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  // Prevent the default prompt
+  event.preventDefault();
+  // Save the event for later use
+  deferredPrompt = event;
+  // Display your custom "Install App" button
+  showInstallButton();
+});
+
+function showInstallButton() {
+  // Display your custom "Install App" button here
+  const installButton = document.querySelector('.install-button');
+  installButton.style.display = 'block';
+  installButton.addEventListener("click",installApp);
+}
+
+
+
+function installApp() {
+  // Trigger the "Install App" prompt when your custom button is clicked
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      // Clear the deferredPrompt so it can't be triggered again
+      deferredPrompt = null;
+    });
+  }
 }

@@ -8,14 +8,15 @@
     <title>ROCK PAPER SCISSOR</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <meta name="theme-color" content="">
 </head>
 
 <body>
     <div class="cont">
         <div id="status">
-            <div id="round-no">Round No <br><span></span></div>
-            <div id="player-points">Player's Points <br><span></span></div>
-            <div id="computer-points">Computer's Points <br><span></span></div>
+            <div id="round-no">Round No <br><span>0</span></div>
+            <div id="player-points">Player's Points <br><span class="no-color">0</span></div>
+            <div id="computer-points">Computer's Points <br><span class="no-color">0</span></div>
         </div>
         <div id="choice">
             <div id="player-choice">Player's Choice<img src="" alt=""></div>
@@ -31,11 +32,26 @@
     <div id="end-screen" class="invisible">
         <div id="inside-end-screen">
             <div id="congratulation">
-
         </div>
         </div>
     </div>
     <footer>Made By RonakRaj</footer>
+
+    <button class="install-button" style="display: none;">Install</button>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/path/to/service-worker.js')
+              .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+              })
+              .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+              });
+          });
+        }
+      </script>
 </body>
 
 </html>
